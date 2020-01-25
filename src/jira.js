@@ -14,15 +14,8 @@ const executeQuery = async () => {
             password: JIRA_API_KEY,
         },
     });
-    return {
-        ...result.data,
-        issues: result.data.issues.map(issue => ({
-            key: issue.key,
-            type: issue.fields.issuetype.name,
-            summary: issue.fields.summary,
-            status: issue.fields.status.name,
-        })),
-    };
+
+    return result.data;
 };
 
 module.exports = { executeQuery };
