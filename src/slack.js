@@ -9,8 +9,6 @@ const {
     MAX_ISSUES,
 } = process.env;
 
-const getIssueUrl = issueKey => `${JIRA_HOST}/browse/${issueKey}`;
-
 const sendSlackMessage = blocks => {
     if (SLACK_WEBHOOK && SLACK_CHANNEL) {
         return axios.post(SLACK_WEBHOOK, {
@@ -51,6 +49,8 @@ const getShownIssuesContextBlock = (totalIssues, maxIssues) => ({
         },
     ],
 });
+
+const getIssueUrl = issueKey => `${JIRA_HOST}/browse/${issueKey}`;
 
 const getIssueBlock = issue => {
     const link = `<${getIssueUrl(issue.key)}|${issue.key}>`;
