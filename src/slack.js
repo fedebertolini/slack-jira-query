@@ -6,6 +6,7 @@ const {
     SLACK_EMOJI,
     JIRA_QUERY_NAME,
     JIRA_HOST,
+    JIRA_QUERY,
     MAX_ISSUES,
 } = process.env;
 
@@ -93,6 +94,22 @@ const getIssueContextBlock = issue => {
     };
 };
 
+const getViewAllUrl = () => `${JIRA_HOST}/issues/?jql=${encodeURIComponent(JIRA_QUERY)}`;
+
+const getViewAllBlock = () => ({
+    type: 'actions',
+    elements: [
+        {
+            type: 'button',
+            text: {
+                type: 'plain_text',
+                text: 'View All',
+            },
+            url: getViewAllUrl(),
+        },
+    ],
+});
+
 const buildBlocks = ({ total, issues }) => {
     const blocks = [getHeaderBlock()];
     const maxIssues = getMaxIssues();
@@ -107,6 +124,10 @@ const buildBlocks = ({ total, issues }) => {
         blocks.push(getDividerBlock());
         blocks.push(getIssueBlock(issue));
         blocks.push(getIssueContextBlock(issue));
+    }
+
+    if (total > maxIssues) {
+        blocks.push(getViewAllBlock());
     }
 
     return blocks;
