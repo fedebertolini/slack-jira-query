@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "description": "Run a JIRA query and send the results to a Slack channel",
   "main": "src/index.js",
+  "preferGlobal": true,
   "repository": "git@github.com:fedebertolini/slack-jira-query.git",
-  "author": "Federico Bertolini <fb@hellofresh.com>",
+  "author": "Federico Bertolini",
   "license": "MIT",
+  "bin": {
+    "slack-jira-query": "src/index.js"
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
