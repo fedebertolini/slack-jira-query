@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "dotenv": "^9.0.1",
+    "dotenv": "^9.0.1"
+  },
+  "devDependencies": {
     "prettier": "^2.2.1"
   }
 }
