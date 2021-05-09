@@ -10,7 +10,7 @@ const {
     MAX_ISSUES,
 } = process.env;
 
-const sendSlackMessage = blocks => {
+const sendSlackMessage = (blocks) => {
     if (SLACK_WEBHOOK && SLACK_CHANNEL) {
         return axios.post(SLACK_WEBHOOK, {
             username: 'JIRA',
@@ -51,9 +51,9 @@ const getShownIssuesContextBlock = (totalIssues, maxIssues) => ({
     ],
 });
 
-const getIssueUrl = issueKey => `${JIRA_HOST}/browse/${issueKey}`;
+const getIssueUrl = (issueKey) => `${JIRA_HOST}/browse/${issueKey}`;
 
-const getIssueBlock = issue => {
+const getIssueBlock = (issue) => {
     const link = `<${getIssueUrl(issue.key)}|${issue.key}>`;
     return {
         type: 'section',
@@ -64,9 +64,9 @@ const getIssueBlock = issue => {
     };
 };
 
-const getUnixTimestamp = date => Math.round(date.getTime() / 1000);
+const getUnixTimestamp = (date) => Math.round(date.getTime() / 1000);
 
-const getIssueContextBlock = issue => {
+const getIssueContextBlock = (issue) => {
     const createdTs = getUnixTimestamp(new Date(issue.fields.created));
     const updatedTs = getUnixTimestamp(new Date(issue.fields.updated));
     const assignedTo = issue.fields.assignee ? issue.fields.assignee.displayName : 'Unassigned';
