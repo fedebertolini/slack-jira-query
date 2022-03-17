@@ -1,6 +1,6 @@
 {
   "name": "slack-jira-query",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Run a JIRA query and send the results to a Slack channel",
   "main": "src/index.js",
   "preferGlobal": true,
